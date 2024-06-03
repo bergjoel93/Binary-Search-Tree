@@ -4,7 +4,7 @@ import Node from "./Node.js";
  * A balanced binary search tree
  */
 
-class Tree {
+export default class Tree {
   constructor(array) {
     this.array = this.removeDuplicates(array.sort((a, b) => a - b)); // sorts and removes duplicates of the array just in case.
     this.root = this.buildTree(this.array);
@@ -53,7 +53,7 @@ class Tree {
     // check if tree is empty, return a new node.
     if (root === null) {
       const newNode = new Node(value);
-      if (this.node === null) {
+      if (this.root === null) {
         this.root = newNode;
       }
       return newNode;
@@ -152,7 +152,7 @@ class Tree {
     let queue = [this.root]; // initialize our queue.
 
     // while there is at least one discovered node
-    while (!queue.length > 0) {
+    while (queue.length > 0) {
       // assign currentNode to the node at the front of queue.
       let currentNode = queue.shift();
 
@@ -298,7 +298,7 @@ class Tree {
     }
 
     // Recursively calculate the height of the left child.
-    const leftheight = this.height(node.left);
+    const leftHeight = this.height(node.left);
     // do the same with the right.
     const rightHeight = this.height(node.right);
 
@@ -343,7 +343,7 @@ class Tree {
    */
   isBalanced(node = this.root) {
     // base case: if node is null it's return
-    if (node === true) {
+    if (node === null) {
       return true;
     }
 
@@ -380,7 +380,7 @@ class Tree {
    * @param {string} prefix - The prefix for the current node's level.
    * @param {boolean} isLeft - Indicates if the node is a left child.
    */
-  prettyPrint = (node, prefix = "", isLeft = true) => {
+  prettyPrint = (node = this.root, prefix = "", isLeft = true) => {
     if (node === null) {
       return;
     }
